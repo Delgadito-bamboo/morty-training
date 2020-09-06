@@ -1,0 +1,42 @@
+export type Dispatch = React.Dispatch<IAction>;
+//ここが何のためにあるのか分からない。とりあえずエラーはなくなった。
+
+export interface IState {
+  episodes: Array<IEpisode>;
+  favorites: Array<any>;
+}
+
+export interface IAction {
+  type: string;
+  payload: Array<IEpisode>;
+}
+
+export interface IEpisode {
+  airdate: string;
+  airstamp: string;
+  airtime: string;
+  id: number;
+  image: { medium: string; original: string };
+  name: string;
+  number: number;
+  runtime: number;
+  season: number;
+  summary: string;
+  url: string;
+}
+
+export interface IContextProps {
+  state: IState;
+  dispatch: Dispatch;
+}
+
+export interface IEpisodeProps {
+  episodes: Array<IEpisode>;
+  store: { state: IState; dispatch: Dispatch };
+  toggleFavAction: (
+    state: IState,
+    dispatch: Dispatch,
+    episode: IEpisode
+  ) => IAction;
+  favorites: Array<IEpisode>;
+}
